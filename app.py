@@ -73,7 +73,7 @@ def classify_comments(comments_list):
 # Helper to fetch comments from YouTube
 def fetch_youtube_comments(video_id, api_key):
     comments = []
-    url = f'https://www.googleapis.com/youtube/v3/commentThreads?key={api_key}&textFormat=plainText&part=snippet&videoId={video_id}&maxResults=100'
+    url = f'key={api_key}&textFormat=plainText&part=snippet&videoId={video_id}&maxResults=100'
     while url:
         resp = requests.get(url)
         data = resp.json()
@@ -82,7 +82,7 @@ def fetch_youtube_comments(video_id, api_key):
             comments.append(comment)
         next_token = data.get('nextPageToken')
         if next_token:
-            url = f'https://www.googleapis.com/youtube/v3/commentThreads?key={api_key}&textFormat=plainText&part=snippet&videoId={video_id}&maxResults=100&pageToken={next_token}'
+            url = f'key={api_key}&textFormat=plainText&part=snippet&videoId={video_id}&maxResults=100&pageToken={next_token}'
         else:
             url = None
     return comments
@@ -156,3 +156,4 @@ def analyze():
 
 if __name__ == '__main__':
     app.run(debug=True)
+

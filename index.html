@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube Comment Sentiment Analyzer</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom Styles -->
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #0a0909, #cc0000);
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg');
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: 320px;
+      padding-top: 150px;
+      margin: 30px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #050000;
+      padding: 50px;
+      border-radius: 22px;
+        border: 3px solid #50034b;
+        color: #7a038f;
+      box-shadow: 0 20px 65px rgba(9, 105, 149, 0.3);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-family: 'Magneto', sans-serif;
+      font-size: 45px;
+      color: #c51919;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h1 i {
+      margin-right: 10px;
+    }
+
+    form {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      border: 2px solid #c5e77e;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #660487;
+      color: #f9f7f7;
+      border: none;
+      border-radius: 4px;
+      border: 1px solid #380f01;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #cc0000;
+    }
+
+    #results {
+      margin-top: 60px;
+    }
+
+    canvas {
+      margin: 20px 0;
+      width: 100% !important;
+      height: auto !important;
+    }
+
+    #comments-list ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #comments-list li {
+      background: #f1d2d2;
+      margin: 5px 0;
+      padding: 8px 12px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  
+    
+
+  <div class="container">
+    <h1><i class="fab fa-youtube"></i> YouTube Comment Sentiment Analyzer</h1>
+
+    <form id="analyze-form">
+      <input type="text" name="video_url" id="video_url" placeholder="Paste YouTube video link here" required>
+      <button type="submit">Analyze</button>
+    </form>
+
+    <div id="loading" style="display:none; text-align:center; margin: 20px 0;">
+  <div class="spinner"></div>
+  <p style="font-weight: bold;">Analyzing comments...</p>
+</div>
+
+
+
+    <div id="results" style="display:none;">
+      <h2>Results</h2>
+      <p>Total Comments: <span id="total"></span></p>
+      <canvas id="histogram" width="400" height="200"></canvas>
+      <div id="comments-list"></div>
+    </div>
+  </div>
+ 
+
+  <script src="/static/main.js"></script>
+</body>
+</html>
